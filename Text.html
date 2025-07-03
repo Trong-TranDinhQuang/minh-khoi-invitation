@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Mời Thôi Nôi - Minh Khôi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #ddbea9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .invitation-card {
+            background: #faf7f2;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid #d4a574;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: sparkle 8s linear infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-50%) translateY(-50%); }
+            100% { transform: translateX(50%) translateY(50%); }
+        }
+        
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            color: #faf7f2;
+            font-size: 4.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: rgba(250, 247, 242, 0.95);
+            font-size: 1.8em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .card-body {
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            background: #faf7f2;
+        }
+        
+        .baby-photo-section {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .photo-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 5px solid #d4a574;
+            box-shadow: 0 12px 30px rgba(212, 165, 116, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f4e4d6 0%, #e8d5c4 100%);
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .baby-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 165, 116, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo-frame:hover .photo-overlay {
+            opacity: 1;
+        }
+        
+        .photo-frame.has-image:hover .photo-overlay {
+            opacity: 0;
+            
+        }
+        
+        .baby-info {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .baby-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            color: #8b4513;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .baby-nickname {
+            font-size: 1.4em;
+            color: #b8956a;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .birthday-info {
+            background: linear-gradient(135deg, #f4e4d6 0%, #e8d5c4 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #d4a574;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .birthday-info::before {
+            content: '🎂';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 3em;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+        
+        .birthday-date {
+            font-size: 1.8em;
+            color: #8b4513;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .birthday-text {
+            font-size: 1.1em;
+            color: #5d4037;
+            font-weight: 500;
+        }
+        
+        .invitation-details {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #d4a574;
+        }
+        
+        .invitation-details h3 {
+            color: #8b4513;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #5d4037;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .detail-icon {
+            font-size: 1.3em;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .blessing-message {
+            background: linear-gradient(135deg, #fff8f0 0%, #faf7f2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #8b4513;
+            font-weight: 500;
+            line-height: 1.6;
+            border: 2px dashed #d4a574;
+            position: relative;
+        }
+        
+        .blessing-message::before {
+            content: '💝';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #faf7f2;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+        
+        .decorative-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .floating-element:nth-child(1) { top: 68%; left: 15%; animation-delay: 1s; }
+        .floating-element:nth-child(2) { top: 68%; right: 15%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { top: 59%; left: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { top: 63%; right: 20%; animation-delay: 0.5s; }
+        .floating-element:nth-child(5) { top: 59%; right: 15%; animation-delay: 1.5s; }
+        .floating-element:nth-child(6) { top: 63%; left: 20%; animation-delay: 2.5s; }
+        
+        .rsvp-section {
+            background: #d4a574;
+            color: white;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .rsvp-section h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f4e4d6;
+            color: #8b4513;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 600px) {
+            .invitation-card {
+                margin: 10px;
+                border-radius: 20px;
+            }
+            
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .baby-name {
+                font-size: 2.2em;
+            }
+            
+            .card-body {
+                padding: 30px 25px;
+            }
+            
+            .invitation-details {
+                padding: 20px;
+            }
+            
+            .photo-frame {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .main-title {
+                font-size: 3.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.8em;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoFrame = document.querySelector('.photo-frame');
+            const photoInput = document.getElementById('photoInput');
+            const babyPhoto = document.getElementById('babyPhoto');
+            
+            photoFrame.addEventListener('click', function() {
+                photoInput.click();
+            });
+            
+            photoInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        babyPhoto.src = e.target.result;
+                        photoFrame.classList.add('has-image');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="invitation-card">
+        <div class="card-header">
+            <div class="main-title">🎉 Thiệp Mời 🎉</div>
+            <div class="subtitle">Lễ Thôi Nôi</div>
+        </div>
+        
+        <div class="card-body">
+            <div class="decorative-elements">
+                <div class="floating-element">🎈</div>
+                <div class="floating-element">🧸</div>
+                <div class="floating-element">⭐</div>
+                <div class="floating-element">🎀</div>
+                <div class="floating-element">🍼</div>
+                <div class="floating-element">💫</div>
+            </div>
+            
+        <div class="photo-frame has-image">
+            <img src="/image/z6766757852408_02d239a1521e68ad064407893eb6f545.jpg" alt="Ảnh bé Minh Khôi" class="baby-photo">
+        </div>
+
+            
+            <div class="baby-info">
+                <div class="baby-name">Minh Khôi</div>
+                <div class="baby-nickname">(Tôm)</div>
+            </div>
+            
+            <div class="birthday-info">
+                <div class="birthday-date">07 • 07 • 2024</div>
+                <div class="birthday-text">Sinh ngày 7 tháng 7 năm 2024</div>
+            </div>
+            
+            <div class="invitation-details">
+                <h3>🎂 Thông Tin Lễ Thôi Nôi</h3>
+                <div class="detail-item">
+                    <span class="detail-icon">📅</span>
+                    <span><strong>Ngày:</strong>Ngày 7 tháng 7 năm 2025 </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">🕐</span>
+                    <span><strong>Giờ:</strong> 17 giờ </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">📍</span>
+                    <span><strong>Địa điểm:</strong>Tại tư gia - số nhà 100 - đường Lý Thái Tổ - Phường Bắc Nghĩa - TP. Đồng Hới  </span>
+                </div>
+                
+                
+            </div>
+            
+            <div class="blessing-message">
+                Gia đình chúng tôi xin trân trọng kính mời quý bạn đến dự lễ thôi nôi của bé Minh Khôi (Tôm). 
+                Sự hiện diện của quý khách sẽ là niềm vinh hạnh và món quà ý nghĩa nhất cho gia đình chúng tôi 
+                trong ngày đặc biệt này.
+            </div>
+            <a href="https://maps.app.goo.gl/EJ1Au1jofkihvRdW7" class="button" target="_blank">
+                    📍 Xem bản đồ Google Maps
+                    </a>
+        </div>
+        
+        <div class="footer">
+            💝 Gia đình bé Minh Khôi (Tôm) kính mời 💝
+        </div>
+    </div>
+</body>
+</html>
